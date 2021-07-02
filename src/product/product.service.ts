@@ -21,7 +21,8 @@ export class ProductService {
   }
 
   async createProduct(createProductDTO: CreateProductDTO): Promise<Product> {
-    const productNew = await new this.productModel(createProductDTO);
+    const productNew = new this.productModel(createProductDTO);
+    await productNew.save();
     return productNew;
   }
 
@@ -30,8 +31,15 @@ export class ProductService {
     return productDelete;
   }
 
-  async UpdateProduct(productID: string): Promise<Product> {
-    const productUpdate = await this.productModel.findByIdAndUpdate(productID);
+  async UpdateProduct(
+    productId: string,
+    createProductDTO: CreateProductDTO,
+  ): Promise<Product> {
+    const productUpdate = await this.productModel.findByIdAndUpdate(
+      productId,
+      createProductDTO,
+      { new: true },
+    );
     return productUpdate;
   }
 }
