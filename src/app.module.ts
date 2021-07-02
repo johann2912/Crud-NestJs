@@ -1,4 +1,4 @@
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { ProductModule } from './product/product.module';
 import { DatabaseModule } from './DataBase/DataBase.module';
 import { AppController } from './app.controller';
